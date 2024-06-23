@@ -1,3 +1,79 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": [
+    "airbnb-typescript/base",
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "next/core-web-vitals"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["react-hooks", "promise"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "tsconfigRootDir": "./",
+    "project": "./tsconfig.json"
+  },
+  "ignorePatterns": ["**.config.*", "setupTests.ts", "node_modules/**/*", "react-app-env.d.ts"],
+  "rules": {
+    "prettier/prettier": ["error", { "singleQuote": true }],
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react-hooks/exhaustive-deps": "error",
+    "react/require-default-props": "off",
+    "@typescript-eslint/array-type": "error",
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
+    "react-hooks/rules-of-hooks": "error",
+    "@typescript-eslint/no-non-null-assertion": "error"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.test.ts", "*.test.tsx"
+      ],
+      "rules": {
+        "@typescript-eslint/consistent-type-assertions": ["error", {
+          "assertionStyle": "as"
+        }]
+      }
+    },
+    {
+      "files": [
+        "*.tsx"
+      ],
+      "rules": {
+        "import/prefer-default-export": "error"
+      }
+    }
+  ]
 }
