@@ -53,14 +53,16 @@ const GenerativeAiModal: FC<GenerativeAiModalType> = ({
     setStep('question');
   }, [setStep]);
 
-  const { title, content } = useMemo((): {
+  const { title, content, submitText } = useMemo((): {
     content: JSX.Element | null;
     title: string;
+    submitText: string;
   } => {
     switch (step) {
       case 'question':
         return {
           title: 'What is your question?',
+          submitText: 'add question',
           content: (
             <QuestionStepTemplate
               areaValue={state.question}
@@ -73,6 +75,7 @@ const GenerativeAiModal: FC<GenerativeAiModalType> = ({
       case 'choice':
         return {
           title: 'What is your choices?',
+          submitText: 'save',
           content: <ChoiceStepTemplate form={state} setFormState={setState} />,
         };
     }
@@ -97,7 +100,7 @@ const GenerativeAiModal: FC<GenerativeAiModalType> = ({
                 isStepCompleted && 'cursor-not-allowed opacity-50',
               )}
             >
-              Ask question
+              {submitText}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
