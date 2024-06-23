@@ -1,9 +1,9 @@
-import { AlertDialog } from '@radix-ui/react-alert-dialog';
+import GenerativeAiContainer from 'src/components/generativeAiModal/generativeAiContainer';
 
 const Home = () => {
   return (
     <main>
-      <AlertDialog open={true}> hello world</AlertDialog>
+      <GenerativeAiContainer />
     </main>
   );
 };
