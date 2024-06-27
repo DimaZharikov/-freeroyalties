@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import GenerativeAiModal, { GenerativeAiState } from './generativeAiModal';
 import {
   Drawer,
@@ -14,21 +14,15 @@ import { Button } from '../ui/button';
 import { getGenerativeItems } from './utils';
 
 const GenerativeAiContainer: FC = () => {
-  const [isShowModal, setIsShowModal] = useState<boolean>(true);
-  const [history, setHistory] = useState<GenerativeAiState[] | null>(null);
+  const savedHistoryItems = getGenerativeItems();
+  const [isShowModal, setIsShowModal] = useState<boolean>(!savedHistoryItems);
+  const [history, setHistory] = useState<GenerativeAiState[] | null>(
+    savedHistoryItems,
+  );
 
   const onHandleSetShowingModal = useCallback((isOpen: boolean) => {
     setIsShowModal(isOpen);
     setHistory(getGenerativeItems());
-  }, []);
-
-  useEffect(() => {
-    const items = getGenerativeItems();
-
-    if (items) {
-      setHistory(items);
-      setIsShowModal(false);
-    }
   }, []);
 
   return (
